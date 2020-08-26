@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <conio.h>
+void cheak(char,char);//declaration of cheak function
+char arr[9]={'1','2','3','4','5','6','7','8','9'};// this is glabal array to access everywhere
+void gameName()
+{
+    printf("\n\t\t\tTic Toc Toe Game:\n");
+}
+void show()//used to show the diagrame
+{
+printf("\n\n\t\t\t---|---|---\n");
+printf("\t\t\t %C | %c | %c ",arr[0],arr[1],arr[2]);
+printf("\n\n\t\t\t---|---|---\n");
+printf("\t\t\t %C | %c | %c ",arr[3],arr[4],arr[5]);
+printf("\n\n\t\t\t---|---|---\n");
+printf("\t\t\t %C | %c | %c ",arr[6],arr[7],arr[8]);
+}
+void inputSymbol()//used for symbol
+{
+printf("\nplayer 1 symbol is:x:");
+printf("\nplayer 1 symbol is:0:");
+}
+void start()//which start function
+{
+  char pl;
+printf("\nEnter who will start the game: Player 1 Or player 2\n");
+scanf("%c",&pl);
+}
+void play()
+{
+char p,s;//p used for possesion and s used for symbol
+printf("\nEnter the possession and symbol for player :\n");
+fflush(stdin);//this function used to get another character from buffer and finished the first character from buffer
+scanf("%c",&p);
+fflush(stdin);
+scanf("%c",&s);
+check(p,s);// play function call to check funtion to check possesion in index
+}
+void check(char p,char s)//definition of check function
+{
+int i;
+for(i=0;i<=8;i++)
+  {
+    if(arr[i]==p)
+  {
+    arr[i]=s;
+  }
+  }
+}
+int end()
+{
+if((arr[0]=='x'&&arr[1]=='x'&&arr[2]=='x')||(arr[0]=='x'&&arr[3]=='x'&&arr[6]=='x')||(arr[0]=='x'&&arr[4]=='x'&&arr[8]=='x'))
+    return(100);
+if((arr[0]=='0'&&arr[1]=='0'&&arr[2]=='0')||(arr[0]=='0'&&arr[3]=='0'&&arr[6]=='0')||(arr[0]=='0'&&arr[4]=='0'&&arr[8]=='0'))
+return(200);
+else if(arr[2]=='x'&&arr[5]=='x'&&arr[8]=='x')
+    return(100);
+else if(arr[2]=='0'&&arr[5]=='0'&&arr[8]=='0')
+    return(200);
+else if(arr[0]=='x'&&arr[4]=='x'&&arr[6]=='x')
+    return(100);
+else if(arr[1]=='0'&&arr[4]=='0'&&arr[6]=='0')
+    return(200);
+else if(arr[3]=='x'&&arr[4]=='x'&&arr[5]=='x')
+    return(100);
+else if(arr[3]=='0'&&arr[4]=='0'&&arr[5]=='0')
+    return(200);
+else if(arr[6]=='x'&&arr[7]=='x'&&arr[8]=='x')
+    return(100);
+else if(arr[6]=='0'&&arr[7]=='0'&&arr[8]=='0')
+    return(200);
+
+}
+
+
+
+
+
+void main()
+{
+gameName();
+show();
+inputSymbol();
+start();
+play();
+show();
+
+label:
+play();
+int k;
+k=end();
+show();
+if(k==100)
+printf("\nplayer 1 won :");
+else if(k==200)
+printf("\nplayer 2 won :");
+else
+goto label;
+show();
+
+
+getch();
+
+}
